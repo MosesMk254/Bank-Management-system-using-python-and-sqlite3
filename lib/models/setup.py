@@ -17,7 +17,7 @@ def create_tables():
         CREATE TABLE IF NOT EXISTS customers (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
-            address INTEGER,
+            address TEXT,
             phone TEXT NOT NULL,
             email TEXT NOT NULL,
             account_number INTEGER

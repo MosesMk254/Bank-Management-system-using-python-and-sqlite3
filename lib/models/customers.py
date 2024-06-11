@@ -1,3 +1,4 @@
+from .config import get_db_connection
 from .setup import create_tables, drop_tables
 
 class Customer:
@@ -15,6 +16,29 @@ class Customer:
     @classmethod 
     def create_table(cls):
         create_tables()
-
+    
+    @classmethod
     def drop_table(cls):
         drop_tables()
+
+    def save(self):
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        sql = """
+            INSERT INTO customers (
+            name, address, phone, email, account_number
+            ) VALUES (?, ?, ?, ?, ?)
+        """
+
+        cursor.execute(sql, (self.name, self.address, self.phone, self.email, self.account_number,))
+        conn.commit()
+
+        self.id = cursor.lastrowid
+
+    @classmethod
+    def create(cls,  name, address, phone, email, account_number):
+        customer = cls(name, address, phone, email, account_number)
+        customer.save()
+
+        return customer

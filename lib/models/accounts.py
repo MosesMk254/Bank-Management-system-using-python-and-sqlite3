@@ -1,3 +1,4 @@
+from .config import get_db_connection
 from .setup import create_tables, drop_tables
 
 class Account:
@@ -14,6 +15,29 @@ class Account:
     @classmethod 
     def create_table(cls):
         create_tables()
-
+    
+    @classmethod
     def drop_table(cls):
         drop_tables()
+
+    def save(self):
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        sql = """
+            INSERT INTO accounts (
+            account_number, account_balance, account_type, date_opened
+            ) VALUES (?, ?, ?, ?)
+        """
+
+        cursor.execute(sql, (self.account_number, self.account_balance, self.account_type, self.date_opened,))
+        conn.commit()
+
+        self.id = cursor.lastrowid
+
+    @classmethod
+    def create(cls, account_number, account_balance, account_type, date_opened):
+        account = cls(account_number, account_balance, account_type, date_opened)
+        account.save()
+
+        return account
