@@ -1,6 +1,7 @@
 import sqlite3
 
-conn = sqlite3.connect("db/bank.db")
+DATABASE_NAME = './db/bank.db'
 
-cursor = conn.cursor()
-
+def get_db_connection():
+    conn = sqlite3.connect(DATABASE_NAME)
+    return conn
