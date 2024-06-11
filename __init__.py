@@ -15,7 +15,7 @@ account5= Account.create(1002, 100, 'Savings account', '6th June 2024')
 
 account1.account_type = 'Savings account'
 account1.update()
-account4.delete()
+# account4.delete()
 
 customer1 =Customer.create('Moses Mutisya', '123-Nairobi', '0746962449', 'mutisyamoses722@gmail.com', account3.account_number)
 customer2 =Customer.create('Jessica Pears', '12454-Kisumu', '0747667676', 'jessicapears722@gmail.com', account1.account_number)
@@ -25,4 +25,4 @@ customer5 =Customer.create('Dona Marie', '4743-Nairobi', '0746101019', 'donamari
 
 customer4.name = 'Louis Litt'
 customer4.update()
-customer5.delete()
+# customer5.delete()
