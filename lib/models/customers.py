@@ -42,3 +42,28 @@ class Customer:
         customer.save()
 
         return customer
+    
+    def update(self):
+        conn = get_db_connection()
+        cursor =conn.cursor()
+
+        sql = """
+            UPDATE customers SET name = ?, address = ?, phone = ?, email = ?, account_number = ?
+            WHERE id = ?
+        """
+
+        cursor.execute(sql, (self.name, self.address, self.phone, self.email, self.account_number, self.id,))
+        conn.commit()
+
+    def delete(self):
+        conn =get_db_connection()
+        cursor = conn.cursor()
+
+        sql = """
+            DELETE FROM customers
+            WHERE id = ?
+        """
+
+        cursor.execute(sql, (self.id,))
+        conn.commit()
+

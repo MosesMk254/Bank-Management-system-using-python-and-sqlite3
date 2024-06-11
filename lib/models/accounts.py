@@ -41,3 +41,28 @@ class Account:
         account.save()
 
         return account
+    
+    def update(self):
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        sql = """
+            UPDATE accounts SET account_number = ?, account_balance = ?, account_type = ?, date_opened = ?
+            WHERE id = ?
+        """
+
+        cursor.execute(sql, (self.account_number, self.account_balance, self.account_type, self.date_opened, self.id,))
+        conn.commit()
+        
+    def delete(self):
+        conn =get_db_connection()
+        cursor = conn.cursor()
+
+        sql = """
+            DELETE FROM accounts
+            WHERE id = ?
+        """
+
+        cursor.execute(sql, (self.id,))
+        conn.commit()
+
