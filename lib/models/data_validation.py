@@ -27,3 +27,8 @@ def validate_address(address):
     if len(address) < 5:
         raise ValueError("Address must be at least 5 characters long.")
     return address
+
+def validate_phone(phone):
+    if len(phone) < 10:
+        raise ValueError("Phone number must be exactly 10 digits long.")
+    return phone
