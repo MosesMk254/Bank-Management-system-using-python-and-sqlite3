@@ -17,3 +17,9 @@ def validate_account_type(account_type):
     if account_type not in valid_types:
         raise ValueError(f"Account type must be one of the following: {', '.join(valid_types)}.")
     return account_type
+
+def validate_name(name):
+    if len(name) < 2 or not name.replace(' ', '').isalpha():
+        raise ValueError("Name must be at least 2 characters long and contain only alphabets and spaces.")
+    return name
+

@@ -1,6 +1,6 @@
 from lib.models.accounts import Account
 from lib.models.customers import Customer
-from lib.models.setup import create_tables
+from lib.models.setup import create_tables, drop_tables
 
 def create_account():
     account_number = input('Enter account number: ')
