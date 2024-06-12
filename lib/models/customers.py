@@ -1,6 +1,6 @@
 from .config import get_db_connection
 from .setup import create_tables, drop_tables
-from .data_validation import validate_name, validate_address, validate_phone
+from .data_validation import validate_name, validate_address, validate_phone, validat_email
 
 class Customer:
     def __init__(self, name, address, phone, email, account_number, id=None):
@@ -8,7 +8,7 @@ class Customer:
         self.name = validate_name(name)
         self.address = validate_address(address)
         self.phone = validate_phone(phone)
-        self.email = email
+        self.email = validat_email(email)
         self.account_number = account_number
 
     def __repr__(self) -> str:

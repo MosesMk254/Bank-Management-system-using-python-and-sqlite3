@@ -1,3 +1,5 @@
+import re
+
 def validate_account_number(account_number):
     if len(account_number) != 10 or not account_number.isdigit():
         raise ValueError("Account number must be exactly 10 digits long.")
@@ -32,3 +34,11 @@ def validate_phone(phone):
     if len(phone) < 10:
         raise ValueError("Phone number must be exactly 10 digits long.")
     return phone
+
+def validat_email(email):
+    regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
+ 
+    if(re.fullmatch(regex, email)):
+        return email
+    else:
+        raise ValueError("Invalid Email")
