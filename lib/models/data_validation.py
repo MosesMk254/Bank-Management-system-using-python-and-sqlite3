@@ -26,4 +26,4 @@ def validate_name(name):
 def validate_address(address):
     if len(address) < 5:
         raise ValueError("Address must be at least 5 characters long.")
-    return addres
+    return address
