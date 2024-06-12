@@ -1,13 +1,13 @@
 from .config import get_db_connection
 from .setup import create_tables, drop_tables
-from .data_validation import validate_account_number,validate_account_balance
+from .data_validation import validate_account_number,validate_account_balance, validate_account_type
 
 class Account:
     def __init__(self, account_number, account_balance, account_type, date_opened, id=None):
         self.id = id
         self.account_number = validate_account_number(account_number)
         self.account_balance = validate_account_balance(account_balance)
-        self.account_type= account_type
+        self.account_type= validate_account_type(account_type)
         self.date_opened = date_opened
 
     def __repr__(self) -> str:

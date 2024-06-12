@@ -11,3 +11,9 @@ def validate_account_balance(account_balance):
     except ValueError:
         raise ValueError("Account balance must be a valid number.")
     return balance
+
+def validate_account_type(account_type):
+    valid_types = ['Savings', 'Checking', 'Business', 'Fixed', 'Current']
+    if account_type not in valid_types:
+        raise ValueError(f"Account type must be one of the following: {', '.join(valid_types)}.")
+    return account_type
