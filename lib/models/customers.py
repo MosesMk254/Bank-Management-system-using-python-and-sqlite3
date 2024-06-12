@@ -1,12 +1,12 @@
 from .config import get_db_connection
 from .setup import create_tables, drop_tables
-from .data_validation import validate_name
+from .data_validation import validate_name, validate_address
 
 class Customer:
     def __init__(self, name, address, phone, email, account_number, id=None):
         self.id = id
         self.name = validate_name(name)
-        self.address = address
+        self.address = validate_address(address)
         self.phone = phone
         self.email = email
         self.account_number = account_number

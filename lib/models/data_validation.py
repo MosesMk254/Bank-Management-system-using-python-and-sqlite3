@@ -23,3 +23,7 @@ def validate_name(name):
         raise ValueError("Name must be at least 2 characters long and contain only alphabets and spaces.")
     return name
 
+def validate_address(address):
+    if len(address) < 5:
+        raise ValueError("Address must be at least 5 characters long.")
+    return addres
