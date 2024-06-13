@@ -49,6 +49,23 @@ def get_all_customers():
         print("-------------")
     return all_customers
 
+# Function to retrieve account by ID
+def get_account_by_id():
+    try:
+        account_id = int(input('Enter account ID: ')) #creating an input that accepts only integers
+        account = Account.find_by_id(account_id) #finding the customers id
+        #checking wether the Id matches an account in the db and if yes displaying their information and if no dispaying the error message
+        if account:
+            print(f"ID: {account.id}")
+            print(f"Account Number: {account.account_number}")
+            print(f"Account Balance: {account.account_balance}")
+            print(f"Account Type: {account.account_type}")
+            print(f"Date Opened: {account.date_opened}")
+        else:
+            print("Account not found.")
+    except ValueError as e:
+        print(f"Error retrieving account: {e}")
+
 # Function to retrieve customer by ID
 def get_customer_by_id():
     try:
@@ -99,7 +116,8 @@ def main():
             3. Retrive the accounts data
             4. Retrive the customer data
             5. Get customer by ID
-            6. Exit app
+            6. Get account by ID
+            7. Exit app
             """)
         # Getting user input for the desired option
         option = input('Enter your option: ')
@@ -118,8 +136,11 @@ def main():
         #call get_customer by id to get customer by id
         elif option == '5':
             get_customer_by_id()
-        # exit loop if option 5 is selected
+        #call get_account_by_id to get customer by id
         elif option == '6':
+            get_account_by_id()
+        # exit loop if option 5 is selected
+        elif option == '7':
             break
         else:
             # Inform the user of invalid input
