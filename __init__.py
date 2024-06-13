@@ -16,7 +16,7 @@ account4= Account.create('6590290167', 136578292, 'Current', '10th July 2020')
 account5= Account.create('1002209378', 100, 'Savings', '6th June 2024')
 
 #Updating the account data
-account1.account_type = 'Savings account'
+account1.account_type = 'Savings'
 account1.update()
 
 #deleting am account

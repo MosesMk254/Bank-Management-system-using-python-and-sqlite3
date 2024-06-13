@@ -82,3 +82,27 @@ class Account:
         cursor.execute(sql, (self.id,))
         conn.commit()
 
+    @classmethod
+    def get_all(cls):
+        conn = get_db_connection() #get db connection
+        cursor = conn.cursor() #creating a cursor object to execute sql commands
+
+        #sql command to get all data from accounts table
+        sql = "SELECT * FROM accounts"
+
+        #executing sql command to fetch all the data from the acconts table
+        cursor.execute(sql)
+        rows = cursor.fetchall()
+        conn.close()
+
+        #creating a class property to store data from the class table
+        accounts = []
+
+        #looping over each rows and appending the instances
+        for row in rows:
+            try:
+                accounts.append(cls(account_number=str(row[1]), account_balance=row[2], account_type=str(row[3]), date_opened=row[4], id=row[0]))
+            except ValueError as e:
+                # Log the error or handle it as needed
+                print(f"Error processing account ID {row[0]}: {e}")
+        return accounts

@@ -20,6 +20,20 @@ def create_account():
         # Handling any ValueError that occurs during account creation
         print(f"Error creating account: {e}")
 
+#function to retrive all the accounts data
+def get_all_accounts():
+    all_accounts = Account.get_all() #getting all the accounts
+
+    #looping through the accounts and displaying every detail to the cli
+    for account in all_accounts:
+        print(f"ID: {account.id}")
+        print(f"Account Number: {account.account_number}")
+        print(f"Account Balance: {account.account_balance}")
+        print(f"Account Type: {account.account_type}")
+        print(f"Date Opened: {account.date_opened}")
+        print("-------------")
+    return all_accounts
+
 # Function to create a new customer
 def create_customer():
     try:
@@ -49,7 +63,8 @@ def main():
             Select Your Options:
             1. Create an account
             2. Create a customer
-            3. Exit app
+            3. Retrive the accounts data
+            4. Exit app
             """)
         # Getting user input for the desired option
         option = input('Enter your option: ')
@@ -59,8 +74,11 @@ def main():
         # Call create_customer if option 2 is selected
         elif option == '2':
             create_customer()
-        # exit loop if option 3 is selected
+        #call get_all_accounts if option 3 is selected
         elif option == '3':
+            get_all_accounts()
+        # exit loop if option 4 is selected
+        elif option == '4':
             break
         else:
             # Inform the user of invalid input
