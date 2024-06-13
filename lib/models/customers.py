@@ -78,8 +78,34 @@ class Customer:
             DELETE FROM customers
             WHERE id = ?
         """
-        
+
          # Executing the SQL command to delete an customer by its ID
         cursor.execute(sql, (self.id,))
         conn.commit()
+
+    @classmethod
+    def get_all(cls):
+        conn = get_db_connection() #get db connection
+        cursor = conn.cursor() #creating a cursor object to execute sql commands
+
+        #sql command to get all data from customers table
+        sql = "SELECT * FROM customers"
+
+        #executing sql command to fetch all the data from the acconts table
+        cursor.execute(sql)
+        rows = cursor.fetchall()
+        conn.close()
+
+        #creating a class property to store data from the class table
+        customers = []
+
+        #looping over each rows and appending the instances
+        for row in rows:
+            try:
+                customers.append(cls(name=str(row[1]), address=str(row[2]), phone=str(row[3]), email=str(row[4]), account_number=str(row[5]), id=row[0]))
+            except ValueError as e:
+                # Log the error or handle it as needed
+                print(f"Error processing account ID {row[0]}: {e}")
+        return customers
+
 
