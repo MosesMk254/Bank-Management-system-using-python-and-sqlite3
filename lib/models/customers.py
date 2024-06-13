@@ -107,5 +107,21 @@ class Customer:
                 # Log the error or handle it as needed
                 print(f"Error processing account ID {row[0]}: {e}")
         return customers
+    
+    @classmethod
+    def find_by_id(cls, customer_id):
+        conn = get_db_connection() #get the db connection
+        cursor = conn.cursor() #creating a cursor object to execute sql command
+
+        #sql command to ge all data from the customers table
+        sql = "SELECT * FROM customers WHERE id = ?"
+
+        #executing the sql command and fetching only by id
+        cursor.execute(sql, (customer_id,))
+        row = cursor.fetchone()
+        conn.close()
+        if row:
+            return cls(name=str(row[1]), address=str(row[2]), phone=str(row[3]), email=str(row[4]), account_number=str(row[5]), id=row[0])
+        return None
 
 
